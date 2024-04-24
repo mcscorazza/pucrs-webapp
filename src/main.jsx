@@ -32,10 +32,14 @@ const router = createBrowserRouter([
     errorElement: <Erro404 />,
     children: [
       { path: "products", element: <Products />},  
+      { path: "products1", element: <Products />},  
+      { path: "products2", element: <Products />},  
       { path: "codes", element: <Codes />},
       { path: "units", element: <Units />},
       { path: "types", element: <Types />},
-      { path: "moves", element: <Movements />},
+      { path: "moves1", element: <Movements />},
+      { path: "moves2", element: <Movements />},
+      { path: "moves3", element: <Movements />},
     ]
   },
 

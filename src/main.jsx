@@ -13,6 +13,7 @@ import Units from "./pages/Units";
 import Types from "./pages/Types";
 
 import Erro404 from "./pages/Erro404.jsx";
+import Movements from "./pages/Movements.jsx";
 
 // https://www.dhiwise.com/post/the-power-of-createbrowserrouter-optimizing-your-react-app
 
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: "codes", element: <Codes />},
       { path: "units", element: <Units />},
       { path: "types", element: <Types />},
+      { path: "moves", element: <Movements />},
     ]
   },
 

@@ -1,42 +1,37 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react';
-import ModalUnits from '../components/ModalUnits';
+import { useState } from "react";
+import { useFetch } from "../hooks/useFetch";
+
+import ModalUnits from "../components/Modals/ModalUnits";
+import HeaderUnits from "../partials/UnitsPartials/HeaderUnits";
+import ToolsUnits from "../partials/UnitsPartials/ToolsUnits";
+import TableUnits from "../partials/UnitsPartials/TableUnits";
+import FooterControls from "../partials/FooterControls";
+
 
 const Units = () => {
-
   const [openModal, setOpenModal] = useState(false);
-  const [unitData, setUnitData] = useState([]);
-
-  const getData = async () => {
-    const response = await axios.get("http://127.0.0.1:8000/api/v1/units/");
-    setUnitData(response.data.data);
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  const [reload, setReload] = useState(true);
+  const { data } = useFetch("http://127.0.0.1:8000/api/v1/units/", reload);
 
   return (
     <>
-      <table className='text-xl w-[300px]'>
-        <thead>
-          <tr><th className='w-10 text-center'>ID</th><th className='w-10'>U.M.</th><th className='w-30'>Descrição</th></tr>
-        </thead>
-        <tbody>
-          {unitData?.map((unit) => (
-            <tr key={unit.id}>
-              <td className='w-10 text-center border-y-2'>{unit.id}</td>
-              <td className='w-10 text-center border-y-2'>{unit.short}</td>
-              <td className='w-10 text-center border-y-2'>{unit.name}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="h-full bg-slate-100 p-2 w-full">
+        <HeaderUnits />
+        <div className="w-full min-h-52 rounded-md shadow-md p-2 text-xl bg-slate-50">
+          <ToolsUnits onClick={() => {setOpenModal(true)}}/>
+          <TableUnits data = {data} />
+          <FooterControls />
+        </div>
+      </div>
 
-      <ModalUnits isOpen={openModal} setModal={() => setOpenModal(false)} />
-      <button className='p-3 rounded-md border mt-4 bg-sky-950 text-white hover:bg-sky-900 text-xl' onClick={() => setOpenModal(true)}>Inserir Novo</button>
+      <ModalUnits
+        isOpen={openModal}
+        setModal={() => setOpenModal(false)}
+        setReload={() => setReload(!reload)}
+      />
+
     </>
-  )
-}
+  );
+};
 
-export default Units
+export default Units;

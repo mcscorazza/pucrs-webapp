@@ -1,27 +1,30 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import MenuHeader from "../partials/Menu/MenuHeader";
+import MenuLink from "../partials/Menu/MenuLink";
 
 const Navbar = () => {
-    return (
-        <nav className="w-64 bg-slate-100 h-full">
-            <div className="px-2 h-16 text-5xl">LOGO</div>
-            <div className="p-2 border-l-4 font-bold border-orange-800 text-xl">Produtos</div>
-            <ul>
-                <li className="py-2 pl-6 border-r-4 border-slate-200 hover:text-slate-400 hover:border-orange-800">
-                    <Link to="products">Cadastro de Produtos</Link>
-                </li>
-                <li className="py-2 pl-6 border-r-4 border-slate-200 hover:text-slate-400 hover:border-orange-800">
-                    <Link to="codes">Codigos</Link>
-                </li>
-                <li className="py-2 pl-6 border-r-4 border-slate-200 hover:text-slate-400 hover:border-orange-800">
-                    <Link to="types">Tipos</Link>
-                </li>
-                <li className="py-2 pl-6 border-r-4 border-slate-200 hover:text-slate-400 hover:border-orange-800">
-                    <Link to="units">Unidades</Link>
-                </li>
-            </ul>
-        </nav>
-    )
-}
+  return (
+    <nav className="w-64 bg-slate-50 h-full">
+      <MenuHeader title="Produto" status={true} />
+      <ul>
+        <MenuLink to="products" title="Lista de Produtos" status={true} />
+        <MenuLink to="codes" title="Códigos SPED" />
+        <MenuLink to="types" title="Tipos de Produto" />
+        <MenuLink to="units" title="Unidades de Medida" />
+      </ul>
+      <MenuHeader title="Produção" status={false} />
+      <ul>
+        <MenuLink to="products" title="Estrutura do Produtos" />
+        <MenuLink to="products" title="Ordem de Produção" />
+      </ul>
+      <MenuHeader title="Movimentação" status={false} />
+      <ul>
+        <MenuLink to="moves" title="Entrada de NF" />
+        <MenuLink to="moves" title="Faturamento" />
+        <MenuLink to="moves" title="Ajuste e Inventário" />
+      </ul>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;

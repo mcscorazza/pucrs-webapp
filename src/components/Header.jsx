@@ -1,4 +1,11 @@
+import { useState } from "react";
+
 const Header = () => {
+  
+  
+
+  const userName = localStorage.getItem("name")
+
   return (
     <div className="w-full bg-sky-950 text-white text-2xl">
       <div className="h-12 bg-sky-900 text-white flex items-center  justify-between overflow-hidden relative">
@@ -7,7 +14,7 @@ const Header = () => {
             <div className="z-50">
               <img src="generic-logo.svg" alt="" width={150} />
             </div>
-          <div className="z-50">Marcos Corazza</div>
+          <div className="z-50">{userName}</div>
         </div>
       </div>
     </div>

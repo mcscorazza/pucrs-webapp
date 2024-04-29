@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputText from "../partials/InputText";
 import ButtonNew from "../partials/Buttons/ButtonNew";
+import axios from "axios";
 
 const Login = () => {
-
+  
   const navigate = useNavigate();
-
+  
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -21,12 +22,31 @@ const Login = () => {
   const submit = (e) => {
     e.preventDefault()
     console.log(data)
-
-    localStorage.setItem("name", "Marcos Eduardo Corazza")
-
-    navigate("/app/products")
+    handleLogin()
   }
 
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+        email: data.email,
+        password: data.password
+      });
+      console.log(response)
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("name", response.data.name);
+      localStorage.setItem("email", response.data.email);
+      console.log('Login bem-sucedido');
+      setData({
+        name: "",
+        email: "",
+        password: "",
+      });
+      navigate('/app/products')
+      
+    } catch (error) {
+      console.error('Erro no login:', error);
+    }
+  };
 
   return (
     <div className="w-full h-svh flex items-center bg-sky-950 justify-center flex-col gap-2 relative overflow-hidden">

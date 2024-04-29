@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputText from "../partials/InputText";
 import ButtonNew from "../partials/Buttons/ButtonNew";
 import axios from "axios";
 
 const Register = () => {
-  const url = "http://127.0.0.1:8000/api/v1/users/";
-
+  const url = "http://127.0.0.1:8000/api/register/";
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -19,23 +19,28 @@ const Register = () => {
     setData(newData);
   }
 
-  function submit(e) {
+  const submit = async (e) => {
     e.preventDefault();
-    axios
-      .post(url, {
+    try {
+      const response = await axios.post(url, {
         name: data.name,
         email: data.email,
         password: data.password,
-      })
-      .then((res) => {
-        setData({
-          name: "",
-          email: "",
-          password: "",
-        });
-        console.log(res);
       });
-  }
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("name", response.data.name);
+      localStorage.setItem("email", response.data.email);
+      console.log("Login bem-sucedido");
+      setData({
+        name: "",
+        email: "",
+        password: "",
+      });
+      navigate('/app/products')
+    } catch (error) {
+      console.error("Erro no login:", error);
+    }
+  };
 
   return (
     <div className="w-full h-svh flex items-center bg-sky-950 justify-center flex-col gap-2 relative overflow-hidden">

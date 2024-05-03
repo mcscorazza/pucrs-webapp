@@ -13,7 +13,8 @@ import HeaderTypes from "../partials/TypesPartials/HeaderTypes";
 const Types = () => {
   const [openModal, setOpenModal] = useState(false);
   const [reload, setReload] = useState(true);
-  const { data } = useFetch("http://127.0.0.1:8000/api/v1/types/", reload);
+  const urlBase = import.meta.env.VITE_LINK_API
+  const { data } = useFetch(urlBase + "/api/v1/types/", reload);
 
   return (
     <>

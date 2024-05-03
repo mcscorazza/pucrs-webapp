@@ -1,9 +1,8 @@
 import ButtonEdit from '../Buttons/ButtonEdit'
 import ButtonDelete from '../Buttons/ButtonDelete'
 
-const TableUnits = ({data}) => {
+const TableUnits = ({ onClick, data }) => {
   return (
-    
     <table className="w-full table-fixed text-left">
     <thead>
       <tr className="border-b-4 border-t-4 bg-gray-100 border-gray-100 text-slate-400 text-base h-8">
@@ -21,7 +20,7 @@ const TableUnits = ({data}) => {
           <td className="px-2 pt-1 text-center">{unit.short}</td>
           <td className="px-2 pt-1">{unit.name}</td>
           <td className="px-2"><ButtonEdit /></td>
-          <td className="px-2"><ButtonDelete /></td>
+          <td className="px-2"><ButtonDelete text="" id={unit.id} endpoint="units" onClick={onClick}/></td>
         </tr>
       ))}
     </tbody>

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
-import ModalTypes from "../components/Modals/ModalTypes";
-
+import ModalSpeds from "../components/Modals/ModalSpeds";
 
 import FooterControls from "../partials/FooterControls";
 import ToolsTypes from "../partials/TypesPartials/ToolsTypes";
@@ -13,8 +12,8 @@ import TableCodes from "../partials/Codes/TableCodes";
 const Codes = () => {
   const [openModal, setOpenModal] = useState(false);
   const [reload, setReload] = useState(true);
-  const { data } = useFetch("http://127.0.0.1:8000/api/v1/speds/", reload);
-
+  const urlBase = import.meta.env.VITE_LINK_API
+  const { data } = useFetch(urlBase + "/api/v1/speds/", reload);
   return (
     <>
       <div className="h-full bg-slate-100 p-2 w-full">
@@ -26,7 +25,7 @@ const Codes = () => {
         </div>
       </div>
 
-      <ModalTypes
+      <ModalSpeds
         isOpen={openModal}
         setModal={() => setOpenModal(false)}
         setReload={() => setReload(!reload)}

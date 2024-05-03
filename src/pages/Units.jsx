@@ -11,7 +11,8 @@ import FooterControls from "../partials/FooterControls";
 const Units = () => {
   const [openModal, setOpenModal] = useState(false);
   const [reload, setReload] = useState(true);
-  const { data } = useFetch("http://127.0.0.1:8000/api/v1/units/", reload);
+  const urlBase = import.meta.env.VITE_LINK_API;
+  const { data } = useFetch(urlBase + "/api/v1/units/", reload);
 
   return (
     <>
@@ -19,7 +20,7 @@ const Units = () => {
         <HeaderUnits />
         <div className="w-full min-h-52 rounded-md shadow-md p-2 text-xl bg-slate-50">
           <ToolsUnits onClick={() => {setOpenModal(true)}}/>
-          <TableUnits data = {data} />
+          <TableUnits data = {data} onClick={() => setReload(!reload)} />
           <FooterControls />
         </div>
       </div>

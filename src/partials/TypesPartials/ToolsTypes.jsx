@@ -18,14 +18,14 @@ const ToolsTypes = (props) => {
           </button>
           <p className="p-2 text-sm font-bold inline">
             <input className="w-5 text-center text-gray-500 outline outline-1 outline-gray-200 rounded-sm h-5"
-              type="text" name="" id="" value="1" />{" "} de 3
+              type="text" name="" id="" value={props.abcd} onChange={console.log("a")} />{" "} de 3
           </p>
           <button className="inline h-8 bg-gray-100 hover:bg-gray-200 px-4 rounded-r-md text-sm text-slate-400 border border-gray-200">
             <ChevronRight />
           </button>
           <select className="h-7 w-28 text-base text-gray-400 outline outline-1 outline-gray-200 rounded-sm p-1"
             name="" id="" >
-            <option value="">10/página</option>
+            <option>10/página</option>
           </select>
         </div>
       </div>

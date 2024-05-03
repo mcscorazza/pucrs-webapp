@@ -11,7 +11,10 @@ import ModalProducts from "../components/Modals/ModalProducts";
 const Products = () => {
   const [openModal, setOpenModal] = useState(false);
   const [reload, setReload] = useState(true);
-  const { data } = useFetch("http://127.0.0.1:8000/api/v1/products/", reload);
+  const urlBase = import.meta.env.VITE_LINK_API
+  const { data } = useFetch(urlBase + "/api/v1/products/", reload);
+
+
 
   return (
     <>

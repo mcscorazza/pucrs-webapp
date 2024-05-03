@@ -3,8 +3,11 @@ import { Trash2 } from "lucide-react";
 
 const ButtonDelete = (props) => {
   const deleteItem = async (id, endpoint) => {
-    const urlBase = "http://127.0.0.1:8000/api/v1";
-    await axios.delete(urlBase + "/" + endpoint + "/" + id);
+    const config = {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }};
+    const urlBase = import.meta.env.VITE_LINK_API;
+    const url = urlBase + "/api/v1";
+    console.log(url)
+    await axios.delete(url + "/" + endpoint + "/" + id, config);
     props.onClick()
   };
 

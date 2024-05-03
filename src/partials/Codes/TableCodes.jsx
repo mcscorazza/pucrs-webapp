@@ -20,7 +20,7 @@ const TableCodes = ({ onClick, data }) => {
           <td className="px-2 pt-1 text-center">{code.code}</td>
           <td className="px-2 pt-1">{code.description}</td>
           <td className="px-4"><ButtonEdit /></td>
-          <td className="px-4"><ButtonDelete text="" id={code.id} endpoint="codes" onClick={onClick}/></td>
+          <td className="px-4"><ButtonDelete text="" id={code.id} endpoint="speds" onClick={onClick}/></td>
         </tr>
       ))}
     </tbody>

@@ -36,14 +36,14 @@ const Header = () => {
         <div className="w-96 h-96 bg-amber-900 absolute top-[-60px] right-[-50px] rotate-[60deg]"></div>
         <div className="flex justify-between w-full px-4">
           <div className="z-50">
-            <img src="generic-logo.svg" alt="" width={150} />
+            <img className="z-50" src="generic-logo.svg" alt="" width={150} />
           </div>
           <div className="z-50 flex gap-2">
             {userName}
             <form className="z-50" onSubmit={handleLogout}>
               <input type="hidden" name="token" value="" />
               <button>
-                <LogOut />
+                <LogOut size={20}/>
               </button>
             </form>
           </div>

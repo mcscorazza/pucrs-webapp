@@ -3,7 +3,9 @@ import axios from "axios";
 
 
 const ModalProducts = ({ isOpen, setModal, setReload }) => {
-    const url = "http://127.0.0.1:8000/api/v1/units/";
+  const config = {headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }};
+  const urlBase = import.meta.env.VITE_LINK_API
+  const url = urlBase + "/api/v1/units/";
     const [data, setData] = useState({
         unit_short: "",
         unit_name: ""
@@ -20,7 +22,7 @@ const ModalProducts = ({ isOpen, setModal, setReload }) => {
         axios.post(url,{
             unit_short:data.unit_short,
             unit_name: data.unit_name
-        })
+        }, config)
         .then(res=>{
             setData({
                 unit_short: "",

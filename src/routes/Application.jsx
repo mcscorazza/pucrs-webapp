@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Navbar from './../components/Navbar';
 import Header from "../components/Header";
 import SubHeader from "../components/SubHeader";
 
 
 const Application = () => {
-  return (
+  const token = localStorage.getItem("token")
+
+  return token ?
     <div className="flex grow h-svh flex-col text-base">
       {/* Topo */}
       <Header />
@@ -22,7 +24,7 @@ const Application = () => {
         </div>
       </div>
     </div >
-  );
+  : <Navigate to="/" replace />;
 };
 
 export default Application;
